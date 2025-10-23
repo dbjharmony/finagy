@@ -40,13 +40,18 @@
 > Not part of the loop
 ```bash
 # Start container with devcontainer.json configuration
-# Everything is pre-configured: Node.js, Git, extensions, workspace
+# Everything is pre-configured: Node.js, Git, extensions, workspace, API keys
 docker run -it --name finagy-dev node:18-bullseye bash
 ```
 > Loop starts here
 ### 1.2 Develop inside container
 ```bash
 # Inside container
+# Set up API keys (copy from Google Keep)
+cp env.local.template .env
+# Edit .env with your real API keys from Google Keep
+nano .env
+
 # Create your Node.js files, test, make changes
 # Work on your code, test, iterate
 exit  # Exit when done
@@ -127,7 +132,32 @@ docker rmi finagy:dev-20241219  # Remove old dev build
 - **Clean up old images** - Keep your system tidy
 - **Backup important builds** - Export images you want to keep
 
-## 6. Troubleshooting
+## 6. API Key Management
+
+### Setting up API keys in container:
+```bash
+# Copy template to .env
+cp env.local.template .env
+
+# Edit with your real keys from Google Keep
+nano .env
+
+# Verify keys are loaded
+echo $OPENAI_API_KEY
+echo $FINANCIAL_DATASETS_API_KEY
+```
+
+### Using API keys in Node.js:
+```javascript
+// Load environment variables
+require('dotenv').config();
+
+// Access API keys
+const openaiKey = process.env.OPENAI_API_KEY;
+const financialKey = process.env.FINANCIAL_DATASETS_API_KEY;
+```
+
+## 7. Troubleshooting
 
 ### Container not found?
 ```bash
