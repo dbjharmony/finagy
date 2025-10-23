@@ -1,16 +1,27 @@
 {
-  "name": "finagy-agent",
-  "version": "0.1.0",
-  "description": "An autonomous financial research agent that performs deep analysis using task planning, introspection, and real-time market data. Inspired by Claude Code, but built specifically for financial research.",
+  "name": "finagy",
+  "version": "0.0.1",
+  "description": "Financial analysis agent - containerized Node.js version",
   "main": "index.js",
-  "bin": {
-    "finagy-agent": "./index.js"
-  },
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "uv pip install ."
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "DBJ",
-  "license": "MIT"
+  "keywords": [
+    "finance",
+    "analysis",
+    "agent",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.0.0",
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.0"
+  }
 }
