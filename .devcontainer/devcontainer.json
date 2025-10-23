@@ -1,6 +1,9 @@
 {
   "name": "Finagy Dev Container",
   "image": "node:18-bullseye",
+  // not how we give the container name in here
+  // no more funny radnom names
+  "containerName": "finagy-dev",
 
   // Features to install
   "features": {

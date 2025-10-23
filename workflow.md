@@ -42,22 +42,10 @@
 ### 1.1 Initial Setup (one-time)
 > Not part of the loop
 
-**Option A: Dev Containers in Cursor (Recommended)**
-```bash
-# In Cursor: Command Palette (Cmd+Shift+P)
-# Type: "Dev Containers: Reopen in Container"
-# Everything is pre-configured via devcontainer.json
-# Use this if you want automatic setup with extensions
-```
-> Always do this option, following "Option B" is just FYI
-
-**Option B: Manual Docker Container**
-```bash
-# Start container manually
-docker run -it --name finagy-dev node:18-bullseye bash
-# Might use this if you want full control over the container
-# But that is probably redundant step
-```
+> In Cursor: Command Palette (Cmd+Shift+P)
+> Type: "Dev Containers: Reopen in Container"
+> Container will be named "finagy-dev" (as specified in devcontainer.json)
+> Everything is pre-configured: Node.js, Git, extensions, workspace
 ---
 > Loop starts here
 ### 1.2 Develop inside container
