@@ -17,7 +17,10 @@
   - [3. Development Workflow](#3-development-workflow)
   - [4. View Your Images](#4-view-your-images)
   - [5. Best Practices](#5-best-practices)
-  - [6. Troubleshooting](#6-troubleshooting)
+  - [6. API Key Management](#6-api-key-management)
+    - [Setting up API keys in container:](#setting-up-api-keys-in-container)
+    - [Using API keys in Node.js:](#using-api-keys-in-nodejs)
+  - [7. Troubleshooting](#7-troubleshooting)
     - [Container not found?](#container-not-found)
     - [Script not working?](#script-not-working)
     - [Need to start over?](#need-to-start-over)
@@ -38,11 +41,24 @@
 > Now lets dive into the workflow itself
 ### 1.1 Initial Setup (one-time)
 > Not part of the loop
+
+**Option A: Dev Containers in Cursor (Recommended)**
 ```bash
-# Start container with devcontainer.json configuration
-# Everything is pre-configured: Node.js, Git, extensions, workspace, API keys
-docker run -it --name finagy-dev node:18-bullseye bash
+# In Cursor: Command Palette (Cmd+Shift+P)
+# Type: "Dev Containers: Reopen in Container"
+# Everything is pre-configured via devcontainer.json
+# Use this if you want automatic setup with extensions
 ```
+> Always do this option, following "Option B" is just FYI
+
+**Option B: Manual Docker Container**
+```bash
+# Start container manually
+docker run -it --name finagy-dev node:18-bullseye bash
+# Might use this if you want full control over the container
+# But that is probably redundant step
+```
+---
 > Loop starts here
 ### 1.2 Develop inside container
 ```bash
