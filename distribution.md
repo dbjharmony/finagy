@@ -19,10 +19,10 @@ Instead of each developer setting up their own environment, we have created a **
 ### **Getting Started:**
 ```bash
 # Team members pull the image
-docker pull your-registry/finagy_dev:latest
+docker pull dusansymphony/finagy_dev:latest
 
 # Run the development environment
-docker run -it --name finagy-dev your-registry/finagy_dev:latest bash
+docker run -it --name finagy-dev dusansymphony/finagy_dev:latest bash
 ```
 
 ## 🎯 **Benefits of This Approach**
@@ -74,8 +74,8 @@ exit  # Exit when done
 
 ### **Docker Hub (Public)**
 ```bash
-docker tag finagy_dev:latest yourusername/finagy_dev:latest
-docker push yourusername/finagy_dev:latest
+docker tag finagy_dev:latest dusansymphony/finagy_dev:latest
+docker push dusansymphony/finagy_dev:latest
 ```
 
 ### **GitHub Container Registry (Private)**
@@ -118,14 +118,14 @@ finagy_dev:feature-python
 
 ### **New Developer Setup:**
 1. **Install Docker**
-2. **Pull the image:** `docker pull your-registry/finagy_dev:latest`
-3. **Start developing:** `docker run -it --name finagy-dev your-registry/finagy_dev:latest bash`
+2. **Pull the image:** `docker pull dusansymphony/finagy_dev:latest`
+3. **Start developing:** `docker run -it --name finagy-dev dusansymphony/finagy_dev:latest bash`
 4. **That's it!** No more setup, configuration, or tool installation
 
 ### **Environment Updates:**
-1. **Pull latest:** `docker pull your-registry/finagy_dev:latest`
+1. **Pull latest:** `docker pull dusansymphony/finagy_dev:latest`
 2. **Remove old container:** `docker rm finagy-dev`
-3. **Start fresh:** `docker run -it --name finagy-dev your-registry/finagy_dev:latest bash`
+3. **Start fresh:** `docker run -it --name finagy-dev dusansymphony/finagy_dev:latest bash`
 
 ## 🔧 **Advanced Features**
 
