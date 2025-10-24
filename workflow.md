@@ -48,11 +48,13 @@
 ### 1.1 Initial Setup (one-time)
 
 > Not part of the loop
+```bash
+# Start container manually (guaranteed name)
+docker run -it --name finagy-dev node:18-bullseye bash
+```
 
-> In Cursor: Command Palette (Cmd+Shift+P)
-> Type: "Dev Containers: Reopen in Container"
-> Container will be named "finagy-dev" (as specified in devcontainer.json)
-> Everything is pre-configured: Node.js, Git, extensions, workspace
+> Note: Dev Containers creates random container names despite devcontainer.json settings
+> Manual Docker gives you predictable naming and full control
 
 ---
 
