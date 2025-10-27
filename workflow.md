@@ -1,5 +1,4 @@
 # Development Workflow
-
 ## Table of Contents
 
 - [Development Workflow](#development-workflow)
@@ -30,21 +29,6 @@
 
 ## 1. The Workflow
 
-> **GIT**
-> Do maintain the connection to github
-> Do maintain it only from one place, in this case container.
-> Do not git the same project from container and from a local folder
-> Where do we install git from?
-> It's installed via the ghcr.io/devcontainers/features/git:1 feature specified in the .devcontainer/devcontainer.json.
-> The devcontainer.json is the central place for defining the development environment.
-> The features section is specifically for installing tools like Git.
-> Current .devcontainer/devcontainer.json already includes Git as a feature
-> Right track for a clean, devcontainer.json-driven setup!
-
----
-
-> Now lets dive into the workflow itself
-
 ### 1.1 Initial Setup (one-time)
 
 > Not part of the loop
@@ -53,8 +37,9 @@
 docker run -it --name finagy-dev node:18-bullseye bash
 ```
 
-> Note: Dev Containers creates random container names despite devcontainer.json settings
-> Manual Docker gives you predictable naming and full control
+> [!NOTE] 
+> (2025Q4) Dev Containers VS Code extension, creates random container names despite `devcontainer.json` settings
+> Manual Docker CLI command, gives predictable naming and full control
 
 ---
 
@@ -64,7 +49,7 @@ docker run -it --name finagy-dev node:18-bullseye bash
 
 ```bash
 # Inside container
-# Set up API keys (copy from Google Keep)
+# Set up API keys (example: copy from your Google Keep)
 cp env.local.template .env
 # Edit .env with your real API keys from Google Keep
 nano .env
@@ -74,25 +59,24 @@ nano .env
 exit  # Exit when done
 ```
 
-> Do not forget to exit the container before proceeding to 1.3
+> Do not forget to **exit** and **stop** the container before proceeding
 
 ### 1.3 Commit your progress
 
 ```bash
-# Check container is stopped
+# Check if container is stopped
 docker ps -a
 # Commit (container must be stopped)
 ./docker-tag.sh dev finagy-dev
 ```
 
 ### 1.4 Continue the loop
-
+> Time passes by
 ```bash
-# Start from your committed image (goes back to 1.2)
+# Start again from your committed image 
 docker run -it finagy:dev-latest bash
 ```
-
-> Loop:\*\* After 1.4, the workflow loops to 1.2 (develop inside container)
+> Here workflow goes back to 1.2
 
 ## 2. Examples
 
