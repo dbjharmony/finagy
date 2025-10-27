@@ -1,4 +1,6 @@
->[!NOTE] Containerized with Docker Commit Style in mind.  (2025-10-27) still getting out of the AI rabbit hole about documenting it all
+>[!NOTE] 
+> Containerized with Docker Commit Style in mind.
+> (2025-10-27) still getting out of the AI rabbit hole about documenting it all
 
 
 
