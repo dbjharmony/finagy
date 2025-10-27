@@ -1,8 +1,12 @@
+>[!NOTE] Containerized with Docker Commit Style in mind.  (2025-10-27) still getting out of the AI rabbit hole about documenting it all
+
+
+
 > 2025-10-23 DBJ : FinAgy - Autonomous Financial Research Agent
 >
 > 2025-10-23 DBJ : Now fully functional with Alpha Vantage API integration! 🎯
 
-# FinAgy
+# FinAgy Dev Container
 
 FinAgy is an autonomous financial research agent that thinks, plans, and learns as it works. It performs analysis using task planning, self-reflection, and real-time market data. Think Claude Code, but built specifically for financial research.
 
