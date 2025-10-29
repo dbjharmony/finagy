@@ -1,0 +1,210 @@
+# Development Workflow
+## Table of Contents
+
+- [Development Workflow](#development-workflow)
+  - [Table of Contents](#table-of-contents)
+  - [1. The Workflow](#1-the-workflow)
+    - [1.1 Initial Setup (one-time)](#11-initial-setup-one-time)
+    - [1.2 Develop inside container](#12-develop-inside-container)
+    - [1.3 Commit your progress](#13-commit-your-progress)
+    - [1.4 Continue the loop](#14-continue-the-loop)
+  - [2. Examples](#2-examples)
+    - [Development Builds (with date)](#development-builds-with-date)
+    - [Feature Builds (with branch name)](#feature-builds-with-branch-name)
+    - [Commit Builds (with git hash)](#commit-builds-with-git-hash)
+    - [Release Builds (with version)](#release-builds-with-version)
+    - [Custom Builds](#custom-builds)
+  - [3. Development Workflow](#3-development-workflow)
+  - [4. View Your Images](#4-view-your-images)
+  - [5. Best Practices](#5-best-practices)
+  - [6. API Key Management](#6-api-key-management)
+    - [Setting up API keys in container:](#setting-up-api-keys-in-container)
+    - [Using API keys in Node.js:](#using-api-keys-in-nodejs)
+  - [7. Troubleshooting](#7-troubleshooting)
+    - [Container not found?](#container-not-found)
+    - [Script not working?](#script-not-working)
+    - [Need to start over?](#need-to-start-over)
+  - [8. Devcontainer Rebuild Workflow](#8-devcontainer-rebuild-workflow)
+    - [Rebuilding Devcontainer with New Features](#rebuilding-devcontainer-with-new-features)
+
+## 1. The Workflow
+
+### 1.1 Initial Setup (one-time)
+
+> Not part of the loop
+```bash
+# Start container manually (guaranteed name)
+docker run -it --name finagy-dev node:18-bullseye bash
+```
+
+> [!NOTE] 
+> (2025Q4) Dev Containers VS Code extension, creates random container names despite `devcontainer.json` settings
+> Manual Docker CLI command, gives predictable naming and full control
+
+---
+
+> Loop starts here
+
+### 1.2 Develop inside container
+
+```bash
+# Inside container
+# Set up API keys (example: copy from your Google Keep)
+cp env.local.template .env
+# Edit .env with your real API keys from Google Keep
+nano .env
+
+# Create your Node.js files, test, make changes
+# Work on your code, test, iterate
+exit  # Exit when done
+```
+
+> Do not forget to **exit** and **stop** the container before proceeding
+
+### 1.3 Commit your progress
+
+```bash
+# Check if container is stopped
+docker ps -a
+# Commit (container must be stopped)
+./docker-tag.sh dev finagy-dev
+```
+
+### 1.4 Continue the loop
+> Time passes by
+```bash
+# Start again from your committed image 
+docker run -it finagy:dev-latest bash
+```
+> Here workflow goes back to 1.2
+
+## 2. Examples
+
+### Development Builds (with date)
+
+```bash
+./docker-tag.sh dev finagy-dev
+# Creates: finagy:dev-20241220
+# Also tags as: finagy:dev-latest
+```
+
+### Feature Builds (with branch name)
+
+```bash
+./docker-tag.sh feature finagy-dev
+# Creates: finagy:feature-funagy_container
+```
+
+### Commit Builds (with git hash)
+
+```bash
+./docker-tag.sh commit finagy-dev
+# Creates: finagy:commit-abc1234
+```
+
+### Release Builds (with version)
+
+```bash
+./docker-tag.sh release finagy-dev v0.1.0
+# Creates: finagy:release-v0.1.0
+```
+
+### Custom Builds
+
+```bash
+./docker-tag.sh custom finagy-dev my-custom-tag
+# Creates: finagy:my-custom-tag
+```
+
+## 3. Development Workflow
+
+- **Daily builds:** Use `dev` tag for daily progress
+- **Feature branches:** Use `feature` tag for specific features
+- **Milestones:** Use `release` tag for stable versions
+- **Experiments:** Use `custom` tag for testing ideas
+
+## 4. View Your Images
+
+```bash
+# List all finagy images
+docker images | grep finagy
+
+# Remove old images to save space
+docker rmi finagy:dev-20241219  # Remove old dev build
+```
+
+## 5. Best Practices
+
+- **Commit frequently** - Don't lose your work
+- **Use descriptive tags** - Know what each image contains
+- **Clean up old images** - Keep your system tidy
+- **Backup important builds** - Export images you want to keep
+
+## 6. API Key Management
+
+### Setting up API keys in container:
+
+```bash
+# Copy template to .env
+cp env.local.template .env
+
+# Edit with your real keys from Google Keep
+nano .env
+
+# Verify keys are loaded
+echo $OPENAI_API_KEY
+echo $FINANCIAL_DATASETS_API_KEY
+```
+
+### Using API keys in Node.js:
+
+```javascript
+// Load environment variables
+require("dotenv").config();
+
+// Access API keys
+const openaiKey = process.env.OPENAI_API_KEY;
+const financialKey = process.env.FINANCIAL_DATASETS_API_KEY;
+```
+
+## 7. Troubleshooting
+
+### Container not found?
+
+```bash
+docker ps -a  # List all containers
+```
+
+### Script not working?
+
+```bash
+chmod +x docker-tag.sh  # Make sure it's executable
+```
+
+### Need to start over?
+
+```bash
+docker rm finagy-dev  # Remove container
+docker run -it --name finagy-dev node:18-bullseye bash  # Start fresh
+```
+
+## 8. Devcontainer Rebuild Workflow
+
+### Rebuilding Devcontainer with New Features
+
+When you modify the `.devcontainer/devcontainer.json` file (e.g., adding new tools like vim), you need to rebuild the devcontainer to apply the changes:
+
+**Option 1: Rebuild from within the devcontainer (Recommended)**
+
+1. Stay in the devcontainer (don't exit to local)
+2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+3. Type "Dev Containers: Rebuild Container"
+4. Select it and press Enter
+5. The container will rebuild with the new configuration
+
+**Option 2: Exit and rebuild**
+
+1. Exit to local folder (Command Palette → "Dev Containers: Reopen Folder Locally")
+2. Then rebuild the container (Command Palette → "Dev Containers: Rebuild and Reopen in Container")
+
+> **Note:** Option 1 is recommended as it's faster and preserves your current workspace state.

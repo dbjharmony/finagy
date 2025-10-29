@@ -1,0 +1,52 @@
+{
+  "name": "Finagy Dev Container",
+  "image": "node:18-bullseye",
+  // not how we give the container name in here
+  // no more funny radnom names
+  "containerName": "finagy-dev",
+
+  // Features to install
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/common-utils:1": {
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "upgradePackages": false,
+      "username": "node",
+      "uid": "1000",
+      "gid": "1000"
+    }
+  },
+
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-json",
+        "ms-vscode.vscode-eslint",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  },
+
+  // Use 'forwardPorts' to make ports available to the host
+  "forwardPorts": [3000, 8080],
+
+  // Configure tool-specific properties
+  "remoteUser": "node",
+
+  // Mount the workspace
+  "workspaceFolder": "/workspaces/finagy",
+
+  // Set environment variables
+  "containerEnv": {
+    "NODE_ENV": "development"
+  }
+}
