@@ -8,10 +8,7 @@
 >
 > 2025-10-23 DBJ : Now fully functional with Alpha Vantage API integration! 🎯
 
-<<<<<<< HEAD
-# FinAgy
-
->>>>>>> funagy_container
+# FunAgy
 
 ## Overview
 FinAgy takes complex financial questions and turns them into clear, step-by-step research plans. It runs those tasks using live market data, checks its own work, and refines the results until it has a confident, data-backed answer.  
