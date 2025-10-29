@@ -17,8 +17,8 @@
 
 ### Alterntaive Workflow Setup: VS Code + Claude Code + Podman on WSL2 (Windows 10 Pro)
 
->[!WARN]
->This is complex no container option
+>[!WARNING]
+>This is complex no container development option, for WIN10 machines
 
 ## Overview
 Setting up a development environment with VS Code, Claude Code extension, and Podman containers - all running in WSL2 on Windows 10 Pro.
