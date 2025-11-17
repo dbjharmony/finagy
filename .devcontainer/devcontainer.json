@@ -9,7 +9,7 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/common-utils:1": {
+    "ghcr.io/devcontainers/features/common-utils:2.5.4": {
       "installZsh": false,
       "installOhMyZsh": false,
       "upgradePackages": false,
