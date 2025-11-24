@@ -1,11 +1,14 @@
 import os
 import time
 from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
+# Use langchain_core.prompts where the installed package exposes ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel
-from typing import Type, List, Optional
-from langchain_core.tools import BaseTool
-from langchain_core.messages import AIMessage
+from typing import Type, List, Optional, Any
+# Avoid importing package-internal types that may move between releases;
+# use `Any` for tool/message typing to remain compatible across langchain versions.
+BaseTool = Any
+AIMessage = Any
 from openai import APIConnectionError
 
 from finagy.prompts import DEFAULT_SYSTEM_PROMPT
