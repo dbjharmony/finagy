@@ -1,0 +1,2 @@
+[console_scripts]
+finagy-agent = finagy.cli:main
